@@ -3,7 +3,7 @@ import "./post.css"
 import { Link } from 'react-router-dom'
 const post = ({post}) => {
   
-  const PF="http://localhost:5000/images/"
+  const PF="https://backend-1ucg.onrender.com/images/"
   return (
     <div className='post'>
         <img className="postImg" src={PF+post.photo} alt="" />

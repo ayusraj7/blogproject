@@ -6,7 +6,7 @@ import {useContext} from 'react'
 import toast from 'react-hot-toast';
 
 const topbar = () => {
-  let PF='http://localhost:5000/images/'
+  let PF='https://backend-1ucg.onrender.com/images/'
   const {user,logout}=useContext(AppContext);
    
    const logoutHandler=()=>{

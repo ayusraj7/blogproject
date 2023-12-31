@@ -20,7 +20,7 @@ export const SinglePost = () => {
   const [post,setPost]=useState('');
   useEffect(()=>{
     const getPost=async()=>{
-      const res=await axios.get('http://localhost:5000/api/posts/' + path);
+      const res=await axios.get('https://backend-1ucg.onrender.com/api/posts/' + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
