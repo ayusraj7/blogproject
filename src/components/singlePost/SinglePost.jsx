@@ -1,14 +1,14 @@
-import React, { useState, useContext ,useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import "./SinglePost.css"
 import { Link } from 'react-router-dom'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { AppContext } from '../../context/Appcontext'
 import axios from 'axios';
 export const SinglePost = () => {
-  const [title,setTitle]=useState("");
-  const [desc,setDesc]=useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
-  
+
   const PF = "http://localhost:5000/images/"
   const { user } = useContext(AppContext);
   const location = useLocation();
@@ -17,21 +17,21 @@ export const SinglePost = () => {
 
 
 
-  const [post,setPost]=useState('');
-  useEffect(()=>{
-    const getPost=async()=>{
-      const res=await axios.get('https://backend-1ucg.onrender.com/api/posts/' + path);
+  const [post, setPost] = useState('');
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get('https://backend-1ucg.onrender.com/api/posts/' + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
-    } 
+    }
     getPost();
-  },[path])
-  
-  
+  }, [path])
+
+
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${path}`, {
+      await axios.delete(`https://backend-1ucg.onrender.com/api/posts/${path}`, {
         data: { username: user?.username },
       });
       navigate('/');
@@ -41,28 +41,28 @@ export const SinglePost = () => {
 
   }
 
-  const handleUpdate = async()=>{
-     try {
-      await axios.put(`http://localhost:5000/api/posts/${path}`, {
-       username: user?.username,
+  const handleUpdate = async () => {
+    try {
+      await axios.put(`https://backend-1ucg.onrender.com/api/posts/${path}`, {
+        username: user?.username,
         title,
         desc
       });
       window.location.reload();
-       //or you can use navigate(0);
+      //or you can use navigate(0);
     } catch (error) {
       console.log('error', error);
     }
   }
 
 
-  
+
   return (
     <div className='singlepost'>
       <div className="singlePostWrapper">
         <img src={PF + post.photo} alt="image" className="singlePostImg" />
         {
-          updateMode ? <input className='singlePostTitleInput' autoFocus type="text" value={title} onChange={(e)=>setTitle(e.target.value)} /> :
+          updateMode ? <input className='singlePostTitleInput' autoFocus type="text" value={title} onChange={(e) => setTitle(e.target.value)} /> :
             (<h1 className="singlePostTitle">{title}
               {
                 post.username === user?.username && (
@@ -83,12 +83,12 @@ export const SinglePost = () => {
           <span className='singlePostDate'> 1 hour ago </span>
         </div>
         {
-          updateMode?(<textarea className='singlePostDescInput' value={desc}
-                        onChange={(e)=>setDesc(e.target.value)}></textarea>)
-            :(<p className='singlePostDesc'>{desc}</p>)
+          updateMode ? (<textarea className='singlePostDescInput' value={desc}
+            onChange={(e) => setDesc(e.target.value)}></textarea>)
+            : (<p className='singlePostDesc'>{desc}</p>)
         }
-        {updateMode && <button className='singlePostButton'onClick={handleUpdate}>Update</button>}
-        
+        {updateMode && <button className='singlePostButton' onClick={handleUpdate}>Update</button>}
+
       </div>
     </div>
   )
