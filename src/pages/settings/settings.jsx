@@ -10,7 +10,7 @@ const settings = () => {
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
   const[success,setSuccess]=useState(false);
-  const PF='http://localhost:5000/images/'
+  const PF='https://backend-1ucg.onrender.com/images/'
   const {user,logout}=useContext(AppContext);
   const handleSubmit=async(e)=>{
     e.preventDefault();
@@ -30,7 +30,7 @@ const settings = () => {
       user.profilePic=updatedUser.profilePic;
       localStorage.setItem('user',JSON.stringify(user));
       try{
-       await axios.post('http://localhost:5000/api/upload',data);
+       await axios.post('https://backend-1ucg.onrender.com/api/upload',data);
       
       }catch(err)
       {
@@ -39,7 +39,7 @@ const settings = () => {
     }
     try{
       console.log('updatedUser',updatedUser);
-      const response=await axios.put(`http://localhost:5000/api/user/${user._id}`,updatedUser);
+      const response=await axios.put(`https://backend-1ucg.onrender.com/api/user/${user._id}`,updatedUser);
       window.location.reload()
       console.log('response',response);
       setSuccess(true);
@@ -50,7 +50,7 @@ const settings = () => {
   }
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/user/${user._id}`, {
+      await axios.delete(`https://backend-1ucg.onrender.com/api/user/${user._id}`, {
         data: { userId:user._id },
       });
       logout();
