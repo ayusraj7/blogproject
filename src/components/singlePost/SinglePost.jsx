@@ -9,7 +9,7 @@ export const SinglePost = () => {
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
-  const PF = "http://localhost:5000/images/"
+  const PF = "https://backend-1ucg.onrender.com/images/"
   const { user } = useContext(AppContext);
   const location = useLocation();
   const navigate = useNavigate();
