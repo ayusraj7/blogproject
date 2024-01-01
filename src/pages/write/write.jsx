@@ -26,14 +26,14 @@ const write = () => {
       newPost.photo=filename;
       
       try{
-       const response=await axios.post('http://localhost:5000/api/upload',data);
+       const response=await axios.post('https://backend-1ucg.onrender.com/upload',data);
       }catch(err)
       {
         console.log('erorr-->',err);
       }
     }
     try{
-      const res=await axios.post('http://localhost:5000/api/posts',newPost);
+      const res=await axios.post('https://backend-1ucg.onrender.com/api/posts',newPost);
       window.location.replace('/post/' + res.data._id);
       
     }catch(error)
