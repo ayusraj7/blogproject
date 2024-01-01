@@ -10,7 +10,7 @@ const Home = () => {
   const {search}=useLocation();
   useEffect(()=>{
     const getData=async()=>{
-      const response=await axios.get('http://localhost:5000/api/posts' + search )
+      const response=await axios.get('https://backend-1ucg.onrender.com/api/posts' + search )
       setPosts(response.data);
      
     }
